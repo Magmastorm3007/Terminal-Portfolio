@@ -24,7 +24,7 @@ const Portfolio = () => {
       contact: "+91-8810614670 | shashwatnath30@gmail.com",
       links: "LinkedIn | GitHub | LeetCode",
       location: "Delhi, India",
-      photo: "/Assets/dp1.jpg" // Replace with your actual photo URL
+      photo: import.meta.env.BASE_URL + "Assets/dp1.jpg" 
     },
     summary: "Software and Data Engineer with 2+ years of experience. Currently at LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines and serverless AWS environments. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
     skills: {
