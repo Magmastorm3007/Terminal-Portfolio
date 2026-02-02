@@ -62,5 +62,37 @@ Error generating stack: `+e.message+`
 
   box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
 }
+  /* ... existing styles ... */
+
+.narrative { 
+  line-height: 1.6; 
+  text-align: justify; /* Professional look for Desktop */
+  color: #b1bac4; 
+}
+
+.border-left { 
+  border-left: 2px solid #39ff14; 
+  padding-left: 15px; 
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  .narrative { 
+    text-align: left; /* Removes the weird gaps/stretching on mobile */
+    font-size: 0.9rem; /* Slightly smaller text for better fitting */
+  }
+  
+  .terminal {
+    padding: 20px 15px; /* Tighter padding for mobile edges */
+  }
+
+  .border-left {
+    padding-left: 10px; /* Conserve horizontal space */
+  }
+
+  .output-block {
+    margin-bottom: 20px; /* Slightly tighter spacing between sections */
+  }
+}
         }
       `}),(0,y.jsx)(`div`,{className:`spacer`,children:(0,y.jsxs)(`div`,{children:[`Last login: `,new Date().toLocaleTimeString(),` on ttys001`,(0,y.jsx)(`br`,{}),`[SYSTEM]: Initializing Shashwat_Nath_Profile...`,(0,y.jsx)(`br`,{}),`[SYSTEM]: Fetching secure data from AWS_S3... [OK]`,(0,y.jsx)(`br`,{}),`[SYSTEM]: Loading experience modules... [OK]`]})}),e.map((e,t)=>e.type===`command`?(0,y.jsxs)(`div`,{children:[(0,y.jsx)(`span`,{className:`prompt`,children:`shashwat@admin`}),`:`,(0,y.jsx)(`span`,{className:`path`,children:`~`}),`$ `,e.value]},t):(0,y.jsx)(`div`,{children:u(e.section)},t)),i<b.length&&(0,y.jsxs)(`div`,{children:[(0,y.jsx)(`span`,{className:`prompt`,children:`shashwat@admin`}),`:`,(0,y.jsx)(`span`,{className:`path`,children:`~`}),`$ `,n,(0,y.jsx)(`span`,{className:`cursor`})]}),(0,y.jsx)(`div`,{ref:c,style:{height:`100px`}})]})};function ee(){return(0,y.jsx)(y.Fragment,{children:(0,y.jsx)(x,{})})}var S=ee;(0,g.createRoot)(document.getElementById(`root`)).render((0,y.jsx)(_.StrictMode,{children:(0,y.jsx)(S,{})}));
