@@ -218,6 +218,38 @@ const Portfolio = () => {
 
   box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
 }
+  /* ... existing styles ... */
+
+.narrative { 
+  line-height: 1.6; 
+  text-align: justify; /* Professional look for Desktop */
+  color: #b1bac4; 
+}
+
+.border-left { 
+  border-left: 2px solid #39ff14; 
+  padding-left: 15px; 
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  .narrative { 
+    text-align: left; /* Removes the weird gaps/stretching on mobile */
+    font-size: 0.9rem; /* Slightly smaller text for better fitting */
+  }
+  
+  .terminal {
+    padding: 20px 15px; /* Tighter padding for mobile edges */
+  }
+
+  .border-left {
+    padding-left: 10px; /* Conserve horizontal space */
+  }
+
+  .output-block {
+    margin-bottom: 20px; /* Slightly tighter spacing between sections */
+  }
+}
         }
       `}</style>
 
