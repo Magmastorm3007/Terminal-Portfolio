@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 const COMMANDS = [
   { cmd: "whoami", section: "header" },
+  { cmd: "cat education.txt", section: "education" }, // Moved up after intro
   { cmd: "cat summary.txt", section: "summary" },
   { cmd: "cat skills.txt", section: "skills" },
   { cmd: "cat experience.txt", section: "experience" },
   { cmd: "cat projects.txt", section: "projects" },
-  { cmd: "cat education.txt", section: "education" },
 ];
 
 const Portfolio = () => {
@@ -20,17 +20,23 @@ const Portfolio = () => {
   const resume = {
     header: {
       name: "SHASHWAT NATH",
-      role: "Software & Data Engineer",
+      role: "Data & Software Engineer",
       contact: "+91-8810614670 | shashwatnath30@gmail.com",
-      links: "LinkedIn | GitHub | LeetCode",
+      links: [
+        { label: "[ LinkedIn ]", url: "https://www.linkedin.com/in/shashwat-nath-077128168/" },
+        { label: "[ GitHub ]", url: "https://github.com/Magmastorm3007" },
+        { label: "[ Blog ]", url: "https://magmastorm.hashnode.dev/" },
+        { label: "[ Twitter ]", url: "https://x.com/magmastorm30" },
+        { label: "[ LeetCode ]", url: "https://leetcode.com/u/user5454Z" }
+      ],
       location: "Delhi, India",
       photo: import.meta.env.BASE_URL + "Assets/dp1.jpg" 
     },
     summary: "Software and Data Engineer with 2+ years of experience. Currently at LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines and serverless AWS environments. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
     skills: {
       languages: ["C++", "Python", "JavaScript (ES6+)", "SQL"],
+      data: ["AWS (Lambda, Glue, Step Functions, EC2, S3)", "PySpark", "GCP", "Airflow", "Hyperledger"],
       backend: ["Node.js", "Next.js", "React.js", "Redis", "Kafka", "PostgreSQL", "MongoDB"],
-      cloud: ["AWS (Lambda, Glue, Step Functions, EC2, S3)", "PySpark", "GCP", "Airflow", "Hyperledger"],
       devops: ["CI/CD (GitHub Actions/GitLab)", "Pytest", "Jest", "SonarQube", "Splunk", "Docker", "Kubernetes"],
     },
     experience: [
@@ -38,28 +44,32 @@ const Portfolio = () => {
         role: "Data Engineer",
         company: "LTIMindtree",
         period: "Dec 2024 – Present",
-        description: "In my current role, I focus on a critical Insurance Payroll Application for a US-based Fortune 500 firm. I spearheaded a major cloud migration from legacy Informatica systems to AWS, utilizing Glue and Step Functions to achieve a 40% cost reduction. A typical day involves fine-tuning distributed Spark jobs—where I've managed to boost performance by up to 50% for 10M+ daily records—and maintaining high production reliability through GitLab CI/CD and SonarQube quality gates."
+        description: "In my current role, I focus on a critical Insurance Payroll Application for a US-based Fortune 500 firm. I became a key contributor to major cloud migration and modernization project from legacy Informatica systems to AWS for the payroll ETL systems, utilizing Glue,Lambda and Step Functions to achieve a 40% cost reduction. A typical day involves fine-tuning distributed Spark jobs—where I've managed to boost performance by up to 30-50% for 10M+ daily records—and maintaining high production code reliability through GitLab CI/CD and SonarQube quality gates. I also managed orchestration with Stonebranch for upstream systems and collaborate closely with onshore cross-functional teams to ensure seamless data flow and integrity."
       },
       {
         role: "Software Developer (Contract)",
         company: "Sabarmati Technologies",
         period: "Jul 2024 – Nov 2024",
-        description: "I was tasked with developing a high-traffic government digital platform. My focus was on building secure RESTful APIs and implementing complex Role-Based Access Control (RBAC). To ensure the system could handle 200+ concurrent users without breaking a sweat, I used a Node.js/React stack and integrated Redis caching to keep API latency at an absolute minimum."
+        description: "I was tasked with developing a  prototype proposal for a high-traffic government digital platform. My focus was on building secure RESTful APIs and implementing complex Role-Based Access Control (RBAC). To ensure the system could handle 200+ concurrent users, I used a Node.js/React stack with my team and integrated Redis caching to keep API latency at an absolute minimum. We also discussed future plans to incorporate State based sharding for database scalability."
       },
       {
         role: "Software Developer Intern / FTE",
         company: "Human AI",
         period: "Dec 2023 – Jun 2024",
-        description: "Working with the Singapore Arcade team, I built backend microservices for an IoT water monitoring system. This was a deep dive into telemetry data (1000+ liters daily) and Web3 interfaces. I refactored our Node.js services on AWS EC2 to cut the memory footprint by 1GB and deployed a blockchain-verified dashboard using Hyperledger Besu to ensure data integrity for carbon credit auditing."
+        description: "Working with the Human AI team, I built backend microservices for an IoT water monitoring system for water sustainability client. This was a deep dive into streaming data (1000+ liters daily) from IOT systems and Web3 interfaces. I refactored our Node.js services on AWS EC2 to cut the memory footprint by upto 1G and deployed a blockchain-verified dashboard with on-chain verification using Hyperledger Besu to ensure data integrity for carbon credit auditing."
       }
     ],
     projects: [
       {
         title: "Set Memory (NPM CLI)",
+        url: "https://www.npmjs.com/package/set-memory",
+        label: "[ NPM Package ]",
         desc: "A Node.js utility that dynamically tunes V8 garbage collection based on hardware to prevent OOM crashes. (500+ Downloads)"
       },
       {
         title: "Breast Cancer Detection AI",
+        url: "https://link.springer.com/chapter/10.1007/978-981-19-4990-6_57",
+        label: "[ Springer Publication ]",
         desc: "Optimized SVM/KNN algorithms to achieve 96% accuracy. Published in Springer and awarded Best Paper at ICICC 2022."
       }
     ],
@@ -73,12 +83,11 @@ const Portfolio = () => {
   useEffect(() => {
     if (commandIndex >= COMMANDS.length) return;
     let isCancelled = false;
-    const commandObj = COMMANDS[commandIndex];
     
     const startTyping = () => {
       setIsTyping(true);
       let charIndex = 0;
-      const fullText = commandObj.cmd;
+      const fullText = COMMANDS[commandIndex].cmd;
 
       const typingInterval = setInterval(() => {
         if (isCancelled) { clearInterval(typingInterval); return; }
@@ -90,7 +99,11 @@ const Portfolio = () => {
           setIsTyping(false);
           setTimeout(() => {
             if (!isCancelled) {
-              setHistory(prev => [...prev, { type: "command", value: fullText }, { type: "output", section: commandObj.section }]);
+              setHistory(prev => [
+                ...prev, 
+                { type: "command", value: fullText }, 
+                { type: "output", section: COMMANDS[commandIndex].section }
+              ]);
               setCommandIndex(prev => prev + 1);
             }
           }, 600);
@@ -119,7 +132,13 @@ const Portfolio = () => {
               <div style={{ color: "#39ff14", fontWeight: "bold" }}>{resume.header.role}</div>
               <div>{resume.header.contact}</div>
               <div>{resume.header.location}</div>
-              <div style={{ color: "#79c0ff", marginTop: "5px" }}>{resume.header.links}</div>
+              <div className="link-container" style={{ marginTop: "10px" }}>
+                {resume.header.links.map((link, i) => (
+                  <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="terminal-link separate-link">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         );
@@ -129,8 +148,8 @@ const Portfolio = () => {
         return (
           <div className="output-block">
             <div><span className="skill-label">Languages:</span> {resume.skills.languages.join(", ")}</div>
+            <div><span className="skill-label">Data:</span> {resume.skills.data.join(", ")}</div>
             <div><span className="skill-label">Backend:</span> {resume.skills.backend.join(", ")}</div>
-            <div><span className="skill-label">Cloud:</span> {resume.skills.cloud.join(", ")}</div>
             <div><span className="skill-label">DevOps:</span> {resume.skills.devops.join(", ")}</div>
           </div>
         );
@@ -145,14 +164,18 @@ const Portfolio = () => {
       case "projects":
         return resume.projects.map((p, i) => (
           <div key={i} className="output-block">
-            <span style={{ color: "#fff", fontWeight: "bold" }}>{p.title}</span> — <span className="narrative">{p.desc}</span>
+            <div style={{ color: "#fff", fontWeight: "bold" }}>{p.title}</div>
+            <div className="narrative" style={{ marginBottom: "5px" }}>{p.desc}</div>
+            <a href={p.url} target="_blank" rel="noopener noreferrer" className="terminal-link">
+              {p.label}
+            </a>
           </div>
         ));
       case "education":
         return (
-          <div className="output-block">
-            <div style={{ color: "#fff" }}>{resume.education.degree}</div>
-            <div>{resume.education.college}</div>
+          <div className="output-block border-left">
+            <div style={{ color: "#fff", fontWeight: "bold" }}>{resume.education.degree}</div>
+            <div style={{ color: "#c9d1d9" }}>{resume.education.college}</div>
             <div style={{ color: "#d2a8ff" }}>CGPA: {resume.education.cgpa}</div>
           </div>
         );
@@ -178,7 +201,6 @@ const Portfolio = () => {
         .path { color: #79c0ff; }
         .output-block { margin: 15px 0 30px 0; }
         
-        /* Header Layout */
         .header-layout { display: flex; align-items: center; gap: 30px; }
         .profile-photo { 
           width: 120px; height: 120px; border-radius: 50%; 
@@ -188,8 +210,23 @@ const Portfolio = () => {
         .name-text { color: #fff; font-size: 1.6rem; font-weight: bold; }
         
         .narrative { line-height: 1.6; text-align: justify; color: #b1bac4; }
-        .border-left { border-left: 2px solid #2d2e2d; padding-left: 15px; }
+        .border-left { border-left: 2px solid #39ff14; padding-left: 15px; }
         .skill-label { color: #79c0ff; font-weight: bold; }
+        
+        .link-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .terminal-link {
+          color: #79c0ff;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+        .separate-link {
+            padding: 2px 5px;
+        }
+        .terminal-link:hover {
+          color: #39ff14;
+          background: rgba(57, 255, 20, 0.1);
+        }
+
         .cursor {
           display: inline-block; width: 8px; height: 16px; background: #39ff14;
           animation: blink 1s infinite; margin-left: 5px; vertical-align: middle;
@@ -199,57 +236,13 @@ const Portfolio = () => {
         @media (max-width: 600px) {
           .header-layout { flex-direction: column; align-items: flex-start; gap: 15px; }
           .profile-photo { 
-  width: 130px; 
-  height: 130px; 
-  border-radius: 50%; 
-  border: 2px solid #39ff14; 
-  
-  /* 1. Ensure this is set to cover so it fills the circle */
-  object-fit: cover; 
-  
-  /* 2. THE FIX: The first value is horizontal (center), 
-     the second is vertical. Reducing the % moves the 'camera' UP.
-     Try 20% or 10% to show more of your head/hair. */
-  object-position: center 15%; 
-  
-  /* 3. If it still feels too 'zoomed in', add this to shrink 
-     the image within the circle frame */
-  transform: scale(1.0); 
-
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
-}
-  /* ... existing styles ... */
-
-.narrative { 
-  line-height: 1.6; 
-  text-align: justify; /* Professional look for Desktop */
-  color: #b1bac4; 
-}
-
-.border-left { 
-  border-left: 2px solid #39ff14; 
-  padding-left: 15px; 
-}
-
-/* MOBILE FIXES */
-@media (max-width: 600px) {
-  .narrative { 
-    text-align: left; /* Removes the weird gaps/stretching on mobile */
-    font-size: 0.9rem; /* Slightly smaller text for better fitting */
-  }
-  
-  .terminal {
-    padding: 20px 15px; /* Tighter padding for mobile edges */
-  }
-
-  .border-left {
-    padding-left: 10px; /* Conserve horizontal space */
-  }
-
-  .output-block {
-    margin-bottom: 20px; /* Slightly tighter spacing between sections */
-  }
-}
+            width: 130px; height: 130px;
+            object-position: center 15%; 
+          }
+          .narrative { text-align: left; font-size: 0.9rem; }
+          .terminal { padding: 20px 15px; }
+          .border-left { padding-left: 10px; }
+          .output-block { margin-bottom: 20px; }
         }
       `}</style>
 
