@@ -27,7 +27,7 @@ const Portfolio = () => {
         { label: "[ GitHub ]", url: "https://github.com/Magmastorm3007" },
         { label: "[ Blog ]", url: "https://magmastorm.hashnode.dev/" },
         { label: "[ Twitter ]", url: "https://x.com/magmastorm30" },
-        { label: "[ LeetCode ]", url: "https://leetcode.com/u/user5454Z" }
+        { label: "[ LeetCode ]", url: "https://leetcode.com/u/user5454Z" },
         { label: "[ Certification ]", url: "https://credentials.databricks.com/7a042f2c-0699-4c5d-9813-835d488da0d7" }
       ],
       location: "Delhi, India",
