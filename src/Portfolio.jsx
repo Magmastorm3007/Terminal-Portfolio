@@ -20,7 +20,7 @@ const Portfolio = () => {
   const resume = {
     header: {
       name: "SHASHWAT NATH",
-      role: "Data & Software Engineer",
+      role: "Big Data Software Engineer",
       contact: "+91-8810614670 | shashwatnath30@gmail.com",
       links: [
         { label: "[ LinkedIn ]", url: "https://www.linkedin.com/in/shashwat-nath-077128168/" },
@@ -28,11 +28,12 @@ const Portfolio = () => {
         { label: "[ Blog ]", url: "https://magmastorm.hashnode.dev/" },
         { label: "[ Twitter ]", url: "https://x.com/magmastorm30" },
         { label: "[ LeetCode ]", url: "https://leetcode.com/u/user5454Z" }
+        { label: "[ Certification ]", url: "https://credentials.databricks.com/7a042f2c-0699-4c5d-9813-835d488da0d7" }
       ],
       location: "Delhi, India",
       photo: import.meta.env.BASE_URL + "Assets/dp1.jpg" 
     },
-    summary: "Software and Data Engineer with 2+ years of experience. Currently at LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines and serverless AWS environments. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
+    summary: "Big Data Software Engineer with 2+ years of experience. As a Databricks Certified Data Engineer Associate at LTM/LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines with Cloud Data engineering and Databricks with serverless AWS environments. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
     skills: {
       languages: ["C++", "Python", "JavaScript (ES6+)", "SQL"],
       data: ["AWS (Lambda, Glue, Step Functions, EC2, S3)", "PySpark", "GCP", "Airflow", "Hyperledger"],
