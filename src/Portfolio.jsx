@@ -9,6 +9,15 @@ const COMMANDS = [
   { cmd: "cat projects.txt", section: "projects" },
 ];
 
+const SECTIONS = [
+  { id: "header", label: "Profile" },
+  { id: "summary", label: "Summary" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+];
+
 const Portfolio = () => {
   const [history, setHistory] = useState([]);
   const [currentText, setCurrentText] = useState("");
@@ -28,16 +37,16 @@ const Portfolio = () => {
         { label: "[ Blog ]", url: "https://magmastorm.hashnode.dev/" },
         { label: "[ Twitter ]", url: "https://x.com/magmastorm30" },
         { label: "[ LeetCode ]", url: "https://leetcode.com/u/user5454Z" },
-        { label: "[ Certification ]", url: "https://credentials.databricks.com/7a042f2c-0699-4c5d-9813-835d488da0d7" }
+        { label: "[ Certification ]", url: "https://credentials.databricks.com/7a042f2c-0699-4c5d-9813-835d488da0d7" },
+        { label: "[ Databricks Gen-AI ]", url: "https://credentials.databricks.com/89026dcd-64be-455b-a57b-8af1d6c0b2b5#acc.tTEkLIbs" }
       ],
       location: "Delhi, India",
       photo: import.meta.env.BASE_URL + "Assets/dp1.jpg" 
     },
-    summary: "Big Data Software Engineer with 2+ years of experience. As a Databricks Certified Data Engineer Associate at LTM/LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines with Cloud Data engineering and Databricks with serverless AWS environments. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
+    summary: "Big Data Software Engineer with 2+ years of experience in IT industry working with prominent Fortune 500 companies, certified in Data Engineering and GenAI. At LTM/LTIMindtree, I specialize in architecting enterprise-grade ETL pipelines with Cloud Data Engineering and Databricks. I'm passionate about technical excellence, cloud scalability, and integrating AI into modern workflows.",
     skills: {
-      languages: ["C++", "Python", "JavaScript (ES6+)", "SQL"],
-      data: ["AWS (Lambda, Glue, Step Functions, EC2, S3)", "PySpark", "GCP", "Airflow", "Hyperledger"],
-      backend: ["Node.js", "Next.js", "React.js", "Redis", "Kafka", "PostgreSQL", "MongoDB"],
+      languages: [ "Python", "SQL", "HiveQL", "Shell Scripting (Debian/Arch)", "C++", "JavaScript (Node.js, React)"],
+      data: ["AWS (Lambda, Glue, Step Functions, EC2, S3)", "PySpark", "Databricks", "Airflow", "Hadoop", "Hive", "Hyperledger"],
       devops: ["CI/CD (GitHub Actions/GitLab)", "Pytest", "Jest", "SonarQube", "Splunk", "Docker", "Kubernetes"],
     },
     experience: [
@@ -45,19 +54,19 @@ const Portfolio = () => {
         role: "Data Engineer",
         company: "LTIMindtree",
         period: "Dec 2024 – Present",
-        description: "In my current role, I focus on a critical Insurance Payroll Application for a US-based Fortune 500 firm. I became a key contributor to major cloud migration and modernization project from legacy Informatica systems to AWS for the payroll ETL systems, utilizing Glue,Lambda and Step Functions to achieve a 40% cost reduction. A typical day involves fine-tuning distributed Spark jobs—where I've managed to boost performance by up to 30-50% for 10M+ daily records—and maintaining high production code reliability through GitLab CI/CD and SonarQube quality gates. I also managed orchestration with Stonebranch for upstream systems and collaborate closely with onshore cross-functional teams to ensure seamless data flow and integrity."
+        description: "I played a crucial role in payroll data delivery for a Fortune 200 insurance/banking client, working closely with business users, upstream teams, and operations to keep the pipeline reliable. We built Spark and Glue ETL for payroll records with incremental CDC, tuned batch jobs using various spark optimization methods to finish in <strong>5–8 minutes as per SLA</strong>, and moved ingestion to a serverless stack using Lambda, Step Functions, Glue, SQS, and SNS. I coordinated Stonebranch/AutoSys orchestration, migrated <strong>180+ tables</strong> from MSSQL to Aurora PostgreSQL with SCT/DMS, and kept deployments stable through GitLab CI/CD, Pytest, Splunk, and CloudWatch, fixing <strong>10+ security vulnerability issues and Code Coverage upto 75%</strong>. I also contribute to AML data infrastructure on Hive/Hadoop/AWS so BI and downstream systems receive trusted, ready-to-use data.",
       },
       {
         role: "Software Developer (Contract)",
         company: "Sabarmati Technologies",
         period: "Jul 2024 – Nov 2024",
-        description: "I was tasked with developing a  prototype proposal for a high-traffic government digital platform. My focus was on building secure RESTful APIs and implementing complex Role-Based Access Control (RBAC). To ensure the system could handle 200+ concurrent users, I used a Node.js/React stack with my team and integrated Redis caching to keep API latency at an absolute minimum. We also discussed future plans to incorporate State based sharding for database scalability."
+        description: "I was tasked with developing a prototype proposal for a high-traffic government digital platform. My focus was on building secure RESTful APIs and implementing complex Role-Based Access Control (RBAC). To ensure the system could handle <strong>200+ concurrent users</strong>, I used a Node.js/React stack with my team and integrated Redis caching to keep API latency at an absolute minimum. We also discussed future plans to incorporate state-based sharding for database scalability.",
       },
       {
         role: "Software Developer Intern / FTE",
         company: "Human AI",
         period: "Dec 2023 – Jun 2024",
-        description: "Working with the Human AI team, I built backend microservices for an IoT water monitoring system for water sustainability client. This was a deep dive into streaming data (1000+ liters daily) from IOT systems and Web3 interfaces. I refactored our Node.js services on AWS EC2 to cut the memory footprint by upto 1G and deployed a blockchain-verified dashboard with on-chain verification using Hyperledger Besu to ensure data integrity for carbon credit auditing."
+        description: "Working with the Human AI team, I built backend microservices for an IoT water monitoring system for a water sustainability client. This was a deep dive into streaming data (<strong>1000+ liters daily</strong>) from IoT systems and Web3 interfaces. I refactored our Node.js services on AWS EC2 to cut the memory footprint by up to <strong>1GB</strong> and deployed a blockchain-verified dashboard with <strong>on-chain verification using Hyperledger Besu </strong> to ensure data integrity for carbon credit auditing.",
       }
     ],
     projects: [
@@ -65,7 +74,13 @@ const Portfolio = () => {
         title: "Set Memory (NPM CLI)",
         url: "https://www.npmjs.com/package/set-memory",
         label: "[ NPM Package ]",
-        desc: "A Node.js utility that dynamically tunes V8 garbage collection based on hardware to prevent OOM crashes. (500+ Downloads)"
+        desc: "A Node.js utility that dynamically tunes V8 garbage collection based on hardware to prevent OOM crashes. (<strong>500+ Downloads</strong>)"
+      },
+      {
+        title: "VG Sales Analytics",
+        url: "https://github.com/Magmastorm3007/vgsales_analytics",
+        label: "[ GitHub ]",
+        desc: "Personal analytics project visualizing video game sales trends with Databricks Lakehouse Platform, using lakeflow declarative pipelines, jobs and AI for prediction. Designed to support data-driven decisions and interactive reporting."
       },
       {
         title: "Breast Cancer Detection AI",
@@ -124,7 +139,7 @@ const Portfolio = () => {
     switch (section) {
       case "header":
         return (
-          <div className="output-block header-layout">
+          <div id="header" className="section-container output-block header-layout">
             <div className="photo-container">
               <img src={resume.header.photo} alt="Profile" className="profile-photo" />
             </div>
@@ -144,37 +159,46 @@ const Portfolio = () => {
           </div>
         );
       case "summary":
-        return <div className="output-block narrative">{resume.summary}</div>;
-      case "skills":
         return (
-          <div className="output-block">
+          <div id="summary" className="section-container output-block narrative" dangerouslySetInnerHTML={{ __html: resume.summary }} />
+        );
+      case "skills": 
+        return (
+          <div id="skills" className="section-container output-block">
             <div><span className="skill-label">Languages:</span> {resume.skills.languages.join(", ")}</div>
             <div><span className="skill-label">Data:</span> {resume.skills.data.join(", ")}</div>
-            <div><span className="skill-label">Backend:</span> {resume.skills.backend.join(", ")}</div>
             <div><span className="skill-label">DevOps:</span> {resume.skills.devops.join(", ")}</div>
           </div>
         );
       case "experience":
-        return resume.experience.map((e, i) => (
-          <div key={i} className="output-block" style={{ marginBottom: "30px" }}>
-            <div style={{ color: "#fff", fontWeight: "bold" }}>{e.role} @ {e.company}</div>
-            <div style={{ color: "#8b949e", fontSize: "0.85rem", marginBottom: "8px" }}>{e.period}</div>
-            <div className="narrative border-left">{e.description}</div>
+        return (
+          <div id="experience" className="section-container">
+            {resume.experience.map((e, i) => (
+              <div key={i} className="output-block" style={{ marginBottom: "30px" }}>
+                <div style={{ color: "#fff", fontWeight: "bold" }}>{e.role} @ {e.company}</div>
+                <div style={{ color: "#8b949e", fontSize: "0.85rem", marginBottom: "8px" }}>{e.period}</div>
+                <div className="narrative border-left" dangerouslySetInnerHTML={{ __html: e.description }} />
+              </div>
+            ))}
           </div>
-        ));
+        );
       case "projects":
-        return resume.projects.map((p, i) => (
-          <div key={i} className="output-block">
-            <div style={{ color: "#fff", fontWeight: "bold" }}>{p.title}</div>
-            <div className="narrative" style={{ marginBottom: "5px" }}>{p.desc}</div>
-            <a href={p.url} target="_blank" rel="noopener noreferrer" className="terminal-link">
-              {p.label}
-            </a>
+        return (
+          <div id="projects" className="section-container project-list">
+            {resume.projects.map((p, i) => (
+              <div key={i} className="project-card output-block">
+                <div className="project-title">{p.title}</div>
+                <div className="narrative project-desc">{p.desc}</div>
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="terminal-link project-link">
+                  {p.label}
+                </a>
+              </div>
+            ))}
           </div>
-        ));
+        );
       case "education":
         return (
-          <div className="output-block border-left">
+          <div id="education" className="section-container output-block border-left">
             <div style={{ color: "#fff", fontWeight: "bold" }}>{resume.education.degree}</div>
             <div style={{ color: "#c9d1d9" }}>{resume.education.college}</div>
             <div style={{ color: "#d2a8ff" }}>CGPA: {resume.education.cgpa}</div>
@@ -201,6 +225,41 @@ const Portfolio = () => {
         .prompt { color: #d2a8ff; font-weight: bold; }
         .path { color: #79c0ff; }
         .output-block { margin: 15px 0 30px 0; }
+      .section-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 14px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(121, 192, 255, 0.25);
+        background: rgba(17, 25, 40, 0.95);
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+      .section-pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: #c9d1d9;
+        background: rgba(57, 255, 20, 0.08);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .section-pill:hover {
+        background: rgba(57, 255, 20, 0.18);
+        color: #39ff14;
+      }
+      .section-container { padding: 15px 0; }
+      .project-list { display: grid; gap: 16px; }
+      .project-card {
+        background: rgba(12, 18, 28, 0.95);
+        border: 1px solid rgba(121, 192, 255, 0.15);
+        border-radius: 12px;
+        padding: 18px;
+      }
+      .project-title { color: #fff; font-weight: bold; margin-bottom: 8px; }
+      .project-desc { margin-bottom: 10px; color: #b1bac4; }
+      .project-link { display: inline-block; margin-top: 4px; }
         
         .header-layout { display: flex; align-items: center; gap: 30px; }
         .profile-photo { 
@@ -211,6 +270,7 @@ const Portfolio = () => {
         .name-text { color: #fff; font-size: 1.6rem; font-weight: bold; }
         
         .narrative { line-height: 1.6; text-align: justify; color: #b1bac4; }
+        strong { color: #39ff14; font-weight: bold; }
         .border-left { border-left: 2px solid #39ff14; padding-left: 15px; }
         .skill-label { color: #79c0ff; font-weight: bold; }
         
@@ -255,6 +315,16 @@ const Portfolio = () => {
           [SYSTEM]: Loading experience modules... [OK]
         </div>
       </div>
+
+      {commandIndex >= COMMANDS.length && (
+        <nav className="section-nav">
+          {SECTIONS.map((section) => (
+            <a key={section.id} href={`#${section.id}`} className="section-pill">
+              {section.label}
+            </a>
+          ))}
+        </nav>
+      )}
 
       {history.map((item, i) =>
         item.type === "command" ? (
